@@ -80,7 +80,10 @@ class TinderBot():
             try:
                 self.like()
             except Exception:
-                self.close_popup()
+                try:
+                    self.close_popup()
+                except Exception:
+                    self.close_match()
 
     def like(self):
         like_button = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/main/div[1]/div/div/div['
@@ -95,6 +98,11 @@ class TinderBot():
     def close_popup(self):
         close_button = self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div[2]/button[2]')
         close_button.click()
+
+    def close_match(self):
+        close_match_button = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/main/div['
+                                                               '2]/div/div/div[1]/div/div[3]/a')
+        close_match_button.click()
 
 
 bot = TinderBot()
